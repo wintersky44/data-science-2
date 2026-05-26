@@ -3,15 +3,14 @@ import pandas as pd
 import joblib
 import json
 
-# Load the model and categories once when the app starts
+
 model = joblib.load('model.joblib')
 
 with open('categories.json', 'r') as f:
     categories = json.load(f)
 
-st.title("Job Salary Predictor")
+st.title("Job Salary Predictor lol")
 
-# Input form
 with st.form("salary_form"):
     City = st.selectbox("City", options=categories['cities'], index=None)
     Company = st.selectbox("Company", options=categories['companies'], index=None)
