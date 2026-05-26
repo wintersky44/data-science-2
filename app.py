@@ -9,7 +9,7 @@ model = joblib.load('model.joblib')
 with open('categories.json', 'r') as f:
     categories = json.load(f)
 
-st.title("Job Salary Predictor lol")
+st.title("Job Salary Predictor")
 
 with st.form("salary_form"):
     City = st.selectbox("City", options=categories['cities'], index=None)
