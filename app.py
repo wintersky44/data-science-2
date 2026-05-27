@@ -31,7 +31,7 @@ with st.form("salary_form"):
     submit = st.form_submit_button("Predict Salary")
 
 if submit:
-    # Create the input data dictionary
+    
     input_data = {
         "City": [City], "Company": [Company], "Job_Title": [Job_Title], "Industry": [Industry],
         "Job_Type": [Job_Type], "Education_Required": [Education_Required], "Location_Tier": [Location_Tier],
@@ -39,12 +39,12 @@ if submit:
         "Openings": [Openings], "Applicants": [Applicants], "Company_Rating": [Company_Rating]
     }
     
-    # Convert to DataFrame
+    
     input_df = pd.DataFrame(input_data)
     
-    # Apply same feature engineering as your original FastAPI code
+    
     input_df['Applicants_per_Opening'] = input_df['Applicants'] / input_df['Openings']
     
-    # Predict
+    
     prediction = model.predict(input_df)
     st.success(f"Predicted Salary: {float(prediction[0]):.2f} LPA")
