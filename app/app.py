@@ -2,11 +2,17 @@ import streamlit as st
 import pandas as pd
 import joblib
 import json
+from pathlib import Path
 
+current_dir = Path(__file__)
 
-model = joblib.load('model.joblib')
+model_path = current_dir.parent.parent / 'models' / 'model.joblib'
 
-with open('categories.json', 'r') as f:
+model = joblib.load(model_path)
+
+categories_path = current_dir.parent / 'categories.json'
+
+with open(categories_path, 'r') as f:
     categories = json.load(f)
 
 st.title("Job Salary Predictor")
