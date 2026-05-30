@@ -4,18 +4,45 @@ import joblib
 import json
 from pathlib import Path
 
+# loading the model
+
 current_dir = Path(__file__)
 
 model_path = current_dir.parent.parent / 'models' / 'model.joblib'
 
 model = joblib.load(model_path)
 
+#loading category data
+
 categories_path = current_dir.parent / 'categories.json'
 
 with open(categories_path, 'r') as f:
     categories = json.load(f)
 
-st.title("Job Salary Predictor")
+# loading the dataset as dataframe
+
+df_path = current_dir.parent.parent / 'data' / 'india_job_market_2024_2026.csv'
+
+df = pd.read_csv(df_path)
+# website code
+
+st.title("Salary Predictor", text_alignment="center")
+
+st.divider()
+
+st.subheader("about the project: ")
+
+st.markdown("""
+
+This project is to analyze the job market of india using a 2024-2026 dataset, 
+and build a predictive model around it.
+
+
+""")
+
+st.dataframe(df.head())
+
+st.divider()
 
 with st.form("salary_form"):
     City = st.selectbox("City", options=categories['cities'], index=None)
